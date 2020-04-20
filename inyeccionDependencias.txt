@@ -1,0 +1,11 @@
+Patron de diseño de la OOP
+
+Sigue principio de Hollywod: No nos llame, nosotros lo llamaremos
+
+Permite desarrollar código desacoplado
+
+Un consumidor de funciones de otra clase no se debe preocupar por instanciar la clase,
+  sino que la instancia le va a llegar. Hay un inyector, que es un componente externo,
+  el cual va a crear la instancia que se necesita, ya sea como parámetro o como atributo de la clase
+  (formas más comunes de inyección). El consumidor no tiene conocimiento de cómo se instancia
+  la clase que consume, nada más la consume.

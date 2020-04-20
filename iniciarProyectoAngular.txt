@@ -1,0 +1,75 @@
+1. Para proyecto nuevo:
+
+    ng new [nombre-proyecto]
+
+2. Sí añadir Angular routing
+
+3. Escoger tipo de hojas de estilo
+
+4. Agregar dependencias:
+
+    npm install --save-dev prettier
+
+5. Instalar dependencias:
+
+    npm install
+
+6. Agregar archivo de Prettier (.prettierrc) al proyecto
+
+7. Agregar Bootstrap y JQuery:
+
+    npm install bootstrap --save
+    npm install jquery --save
+
+Luego en angular.json, agregar "node_modules/bootstrap/dist/css/bootstrap.min.css" en styles,
+    y luego "node_modules/jquery/dist/jquery.min.js" y "node_modules/bootstrap/dist/js/bootstrap.min.js" en scripts
+Aplica la precedencia, entonces debe ser en ese orden
+
+Resumen:
+    e2e                 ->  Pruebas en el navegador. Protractor, librería de pruebas propia de Angular
+    node_modules        ->  Carpeta que tiene todas las dependencias de Node
+    .editorconfig       ->  Mantiene la configuración del editor como parte del código
+    angular.json        ->  Archivo de configuración. Tal vez los más relevante es que al agregar Bootstrap se debe
+                            agregar a la sección de styles del archivo. Aplica para otras dependencias como Chart JS
+    karma.conf.js       ->  Archivo de configuración de Karma, que es el runtime con el que se corren las pruebas de Protractor
+    package-lock.json   ->  Archivo de Node para rastreabilidad de las dependencias del package
+    package.json        ->  Archivo de Node para 3 cosas básicamente:
+                                1. Información general
+                                2. Dependencias (de ejecución y de desarrollo)
+                                3. Scripts
+    .prettierrc         ->  Archivo de configuración de Prettier
+    README.md
+    tsconfig            ->  Configuración de Angular para el transpiler de TS a JS
+                            En tsconfig.json está la versión de JS (target)
+                            Todo lo que es .spec es para pruebas
+    tslint              ->  Linting que hace TS
+    src                 ->  Source es donde se trabaja siempre el código.
+                            Angular es SPA, entonces es una sola página que se refresca "a pedazos".
+                            El URL cambia pero eso no representa una página del servidor, sino que es una ruta
+                            que captura el Angular Routing
+                            index.html es la página única y ahí es donde todo se va empotrando
+                            main.ts es el que arranca Esel sistema. Se controla si se está en producción para que haya más eficiencia.
+                                Por ejemplo, corre más rápido porque no es tan verboso con respecto a errores
+                            polyfills.ts es para proveer funcionalidad más moderna en navegadores más viejos
+                            styles.css es la hoja de estilos principal. Hay jerarquía global y por componentes. Este archivo es para el nivel global.
+                            test.ts es para Karma y Jasmin
+                            favicon.ico es el simbolito de la página. favicon-generator.org para obtenerlo a partir de una imagen
+                            environments es para configurar ambientes de desarrollo, producción
+                            assets es para almacenar los activos (logos, fondos, imágenes)
+                            app es donde está el código de la aplicación
+
+Cuando se crea la aplicación por primera vez va a tener un único componente que es 'app'.
+También está el módulo 'app'.
+En Angular hay MÓDULOS y COMPONENTES. Dentro de un módulo hay componentes.
+Los componentes pueden existir solos, y van a formar parte del módulo 'app'. Pero también se pueden
+    incluir dentro de módulos. Por ejemplo el módulo de servicios para conectarse a Firebase.
+Para un componente, .component.ts es el controlador o la vista-controlador.
+    .component.html, junto con .componente.css, es la vista.
+Si se declararan variables del componente (incluyendo funciones), se pueden usar en la vista con doble llave ( "{{" y "}}" )
+En el .component.ts se especifica el selector para usar etiquetas dentro de los html. Por ejemplo <app-root>.
+    El selector se usa en el html para indicar dónde en la página se va a expandir el componente.
+
+'ng serve' para el servidor de desarrollo
+
+'ng lint' y luego 'ng build' (este es el que hace la transformación del proyecto de TS a JS para que se pueda tener
+    como una distribución que se puede instalar en un servidor. Se crea la carpeta dist)

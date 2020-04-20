@@ -1,0 +1,45 @@
+El CLI ofrece comandos para crear componentes y servicios -> ng generate
+
+Lo más fácil es imaginar un componente como una página.
+  Puede ser una parte de la página. Y puede ser que esa parte se reutilice en varias páginas.
+  Por ejemplo, un componente para subir archivos que se reutiliza en varias páginas, las cuales a su vez también son componentes.
+
+El componente base (en la jerarquía) es 'app'.
+
+ng generate component [nombre-componente]
+
+Cuando se crea el componente, se crea la carpeta para el componente, con los respectivos 4 archivos.
+  .component.spec.ts son las pruebas unitarias
+  .component.css **** Recordar que puede haber estilos para los componentes y estilos globales
+
+La ruta para el componente se añade al módulo de rutas (app-routing.module.ts), especificando en el array 'routes'
+  la ruta del componente, con los campos 'path' y 'component'.
+  Si el 'path' está vacío, sería como la ruta '/'.
+
+<router-outlet></router-outlet> es lo que en app.component.html se expande con la vista del componente.
+  Es una directiva de angular.
+
+ngForm es un componente de Angular, parte del módulo 'FormsModule'.
+  Sirve para poder usar formularios en Angular.
+  En el módulo de la aplicación (app.module.ts), se debe poner al inicio del archivo el import
+  "import {FormsModule} from '@angular/forms';" y 'FormsModule' en el array de imports.
+
+Servicios son una buena forma de compartir información entre clases que no saben nada unas de otras.
+
+ng generate service [carpeta/nombre-servicio]
+
+El servicio se debe añadir al array 'providers' del módulo de la aplicación (app.module.ts)
+
+RouteGuard es un "guarda de rutas", se puede utilizar para realizar autenticación o no. Implementa canActivate.
+  RouteGuard también debe ir dentro de 'providers'
+  En el módulo de rutas (app-routing.module.ts), se modifican las rutas (dentro del array 'routes') que se desean proteger.
+  Se les agrega el campo 'canActivate' y como valor tiene un array que debe contener a RouteGuard.
+  Esta es la forma de controlar acceso a ciertas rutas.
+  El control se puede ejercer no solo si el usario está logueado o no, sino que también puede ser de acuerdo con roles
+  (ACL, control por lista de acceso).
+
+Para transición, el componente debe tener inyectado el Router.
+  Se utiliza .navigate()
+
+*** bootstrap en app.module.ts es lo que tiene que correr de primera entrada la aplicación, por eso tiene el AppComponent
+*** A un Observable se pueden suscribir threads para que sean notificados cuando una variable cambie

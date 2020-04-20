@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {UserService} from '../shared/user.service';
 import {Router} from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import {NotificationService} from '../shared/notification.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private toastr: ToastrService
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit() {}
@@ -32,7 +32,12 @@ export class LoginComponent implements OnInit {
     } else {
       // console.log(':( usuario incorrecto');
 
-      this.toastr.error('Error al loguear', 'Error!');
+      // this.toastr.error('Error al loguear', '💣 Error!', {
+      //   closeButton: true,
+      //   progressBar: true
+      // });
+
+      this.notificationService.showErrorMessage('Error!', 'Error al loguear');
     }
   }
 }

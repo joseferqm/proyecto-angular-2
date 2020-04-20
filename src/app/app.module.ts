@@ -11,6 +11,7 @@ import {RouteGuard} from './shared/route-guard';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {ToastrModule} from 'ngx-toastr';
+import {NotificationService} from './shared/notification.service';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomeComponent],
@@ -21,7 +22,7 @@ import {ToastrModule} from 'ngx-toastr';
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot() // ToastrModule added
   ],
-  providers: [UserService, RouteGuard],
+  providers: [UserService, RouteGuard, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

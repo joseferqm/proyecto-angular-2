@@ -15,4 +15,9 @@ export class NotificationService {
   showErrorMessage(title: string, message: string) {
     this.toastr.error(message, '💣 ' + title, this.toastrSettings);
   }
+
+  showSuccessMessage(title: string, message: string) {
+    // this.toastr.success(message, '⭐ ' + title, this.toastrSettings);
+    this.toastr.success(message, `⭐ ${title}`, this.toastrSettings);
+  }
 }

@@ -14,7 +14,7 @@
       <tbody>
         <tr *ngFor="let post of this.posts">
           <td>{{ post.key }}</td>
-          <td>{{ post.creationDate }}</td>
+          <td>{{ post.creationDate | date: 'medium' }}</td>
           <td>{{ post.author }}</td>
           <td>{{ post.title }}</td>
           <td>{{ post.content }}</td>

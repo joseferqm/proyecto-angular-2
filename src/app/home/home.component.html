@@ -1,1 +1,26 @@
-<p>home works!</p>
+<div class="row">
+  <div class="col-12">
+    <table class="table table-bordered" width="100%" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Fecha</th>
+          <th>Autor</th>
+          <th>Título</th>
+          <th>Contenido</th>
+          <th>Img</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of this.posts">
+          <td>{{ post.key }}</td>
+          <td>{{ post.creationDate }}</td>
+          <td>{{ post.author }}</td>
+          <td>{{ post.title }}</td>
+          <td>{{ post.content }}</td>
+          <td>{{ post.img }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

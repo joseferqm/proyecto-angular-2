@@ -19,6 +19,10 @@ export class HomeComponent implements OnInit {
     console.log(this.posts);
   }
 
+  getPosts() {
+    return this.posts;
+  }
+
   onSubmit(form: NgForm) {
     const title = form.value.title;
     const content = form.value.content;

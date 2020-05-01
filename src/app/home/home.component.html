@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let post of this.posts">
+        <tr *ngFor="let post of this.getPosts()">
           <td>{{ post.key }}</td>
           <td>{{ post.creationDate | date: 'medium' }}</td>
           <td>{{ post.author }}</td>

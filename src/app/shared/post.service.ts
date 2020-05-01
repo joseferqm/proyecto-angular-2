@@ -65,4 +65,23 @@ export class PostService {
 
     this.posts.push(newPost);
   }
+
+  addNewPostAsync(title: string, content: string, author: string) {
+    const prom = new Promise((resolve, reject) => {
+      const randomNumber = Math.random();
+
+      if (randomNumber > 0.5) {
+        setTimeout(() => {
+          this.addNewPost(title, content, author);
+          resolve('Publicación creada');
+        }, 2000);
+      } else {
+        setTimeout(() => {
+          reject('Error en el servidor');
+        }, 3000);
+      }
+    });
+
+    return prom;
+  }
 }

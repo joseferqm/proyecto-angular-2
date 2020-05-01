@@ -23,9 +23,24 @@ export class HomeComponent implements OnInit {
     const title = form.value.title;
     const content = form.value.content;
 
+    // Código original para agregar post síncrono
+    /*
     this.postService.addNewPost(title, content, 'test123');
 
     // Refrescar la lista de posts
     this.posts = this.postService.getAllPosts();
+
+    */
+
+    // Código para agregar post asíncrono
+    this.postService
+      .addNewPostAsync(title, content, 'test123')
+      .then((result) => {
+        this.notificationService.showSuccessMessage('Todo bien!', 'Publicación creada');
+        this.posts = this.postService.getAllPosts();
+      })
+      .catch((error) => {
+        this.notificationService.showErrorMessage('Error!', 'Error al crear la publicación');
+      });
   }
 }

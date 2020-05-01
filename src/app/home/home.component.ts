@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     return this.posts;
   }
 
-  onSubmit(form: NgForm) {
+  async onSubmit(form: NgForm) {
     const title = form.value.title;
     const content = form.value.content;
 
@@ -37,14 +37,14 @@ export class HomeComponent implements OnInit {
     */
 
     // Código para agregar post asíncrono
-    this.postService
-      .addNewPostAsync(title, content, 'test123')
-      .then((result) => {
-        this.notificationService.showSuccessMessage('Todo bien!', 'Publicación creada');
-        this.posts = this.postService.getAllPosts();
-      })
-      .catch((error) => {
-        this.notificationService.showErrorMessage('Error!', 'Error al crear la publicación');
-      });
+    try {
+      const result = await this.postService.addNewPostAsync(title, content, 'test123');
+      console.log('resultado', result);
+      this.notificationService.showSuccessMessage('Todo bien!', result.toString());
+      this.posts = this.postService.getAllPosts();
+    } catch (error) {
+      console.log('error', error);
+      this.notificationService.showErrorMessage('Error!', 'Error al crear la publicación');
+    }
   }
 }

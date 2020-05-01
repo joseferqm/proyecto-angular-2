@@ -49,4 +49,20 @@ export class PostService {
   getAllPosts() {
     return JSON.parse(JSON.stringify(this.posts)); // Deep copy
   }
+
+  addNewPost(title: string, content: string, author: string) {
+    const newKey = this.posts.length + 1;
+
+    const newPost: PostData = {
+      key: newKey.toString(10),
+      creationDate: new Date().toString(),
+      title: title,
+      content: content,
+      author: author,
+      img: 'https://placeimg.com/320/240/any/sepia',
+      created: Date.now()
+    };
+
+    this.posts.push(newPost);
+  }
 }

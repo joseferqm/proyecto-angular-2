@@ -84,4 +84,10 @@ export class PostService {
 
     return prom;
   }
+
+  getPostsByAuthor(author: string) {
+    return this.posts.filter(post => {
+      return post.author === author;
+    });
+  }
 }

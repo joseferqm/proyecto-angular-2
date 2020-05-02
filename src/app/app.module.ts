@@ -15,6 +15,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {NotificationService} from './shared/notification.service';
 import {HeaderComponent} from './header/header.component';
 import {PostService} from './shared/post.service';
+import {SpinnerService} from './shared/spinner.service';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomeComponent, HeaderComponent],
@@ -26,7 +27,7 @@ import {PostService} from './shared/post.service';
     ToastrModule.forRoot(), // ToastrModule added
     NgxSpinnerModule
   ],
-  providers: [UserService, RouteGuard, NotificationService, PostService],
+  providers: [UserService, RouteGuard, NotificationService, PostService, SpinnerService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

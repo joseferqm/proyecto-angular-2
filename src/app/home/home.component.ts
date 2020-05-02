@@ -3,6 +3,7 @@ import {PostData} from '../shared/models';
 import {PostService} from '../shared/post.service';
 import {NotificationService} from '../shared/notification.service';
 import {NgForm} from '@angular/forms';
+import {SpinnerService} from '../shared/spinner.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,11 @@ import {NgForm} from '@angular/forms';
 export class HomeComponent implements OnInit {
   private posts: PostData[];
 
-  constructor(private postService: PostService, private notificationService: NotificationService) {}
+  constructor(
+    private postService: PostService,
+    private notificationService: NotificationService,
+    private spinnerService: SpinnerService
+  ) {}
 
   ngOnInit() {
     this.posts = this.postService.getAllPosts();
@@ -37,6 +42,8 @@ export class HomeComponent implements OnInit {
     */
 
     // Código para agregar post asíncrono
+    this.spinnerService.showMainSpinner();
+
     try {
       const result = await this.postService.addNewPostAsync(title, content, 'test123');
       console.log('resultado', result);
@@ -45,6 +52,8 @@ export class HomeComponent implements OnInit {
     } catch (error) {
       console.log('error', error);
       this.notificationService.showErrorMessage('Error!', 'Error al crear la publicación');
+    } finally {
+      this.spinnerService.hideMainSpinner();
     }
   }
 }

@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
       const result = await this.postService.addNewPostAsync(title, content, 'test123');
       console.log('resultado', result);
       this.notificationService.showSuccessMessage('Todo bien!', result.toString());
+      form.reset();
       this.posts = this.postService.getAllPosts();
     } catch (error) {
       console.log('error', error);

@@ -17,9 +17,10 @@ import {HeaderComponent} from './header/header.component';
 import {PostService} from './shared/post.service';
 import {SpinnerService} from './shared/spinner.service';
 import { AuthorComponent } from './author/author.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, HeaderComponent, AuthorComponent],
+  declarations: [AppComponent, LoginComponent, HomeComponent, HeaderComponent, AuthorComponent, NotificationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

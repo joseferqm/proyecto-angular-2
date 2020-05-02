@@ -37,7 +37,13 @@ export class LoginComponent implements OnInit {
       //   progressBar: true
       // });
 
+      // Notificar con toaster
       this.notificationService.showErrorMessage('Error!', 'Error al loguear');
+
+      // Notificar con banner casero
+      /*
+      this.notificationService.displayBanner('error', 'Error al loguear');
+      */
     }
   }
 }

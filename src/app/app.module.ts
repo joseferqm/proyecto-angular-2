@@ -11,8 +11,10 @@ import {RouteGuard} from './shared/route-guard';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {ToastrModule} from 'ngx-toastr';
+import { NgxSpinnerModule } from "ngx-spinner";
 import {NotificationService} from './shared/notification.service';
 import { HeaderComponent } from './header/header.component';
+import { PostService } from './shared/post.service';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomeComponent, HeaderComponent],
@@ -21,9 +23,10 @@ import { HeaderComponent } from './header/header.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot(), // ToastrModule added
+    NgxSpinnerModule
   ],
-  providers: [UserService, RouteGuard, NotificationService],
+  providers: [UserService, RouteGuard, NotificationService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

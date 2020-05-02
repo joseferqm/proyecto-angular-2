@@ -1,0 +1,4 @@
+Se utiliza una variable de tipo any y se instancia como un EventEmitter<any>.
+Cuando ocurre el evento se puede emitir "cualquier cosa", por eso el tipo any.
+Si uno se suscribe al evento, cuando ocurre algo se puede disparar el evento y
+  los que están suscritos al evento son notificados.

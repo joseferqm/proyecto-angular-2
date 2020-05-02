@@ -1,0 +1,17 @@
+Un componente es algo que se ve.
+Un servicio es algo que ofrece funcionalidad en el código.
+
+Al utilizar un plugin o una herramienta similar, es buena idea ponerlo dentro de un wrapper
+  y que quede dentro de un servicio programado por uno. Si luego se quisiera cambiar de plugin,
+  se cambia en el servicio y no hay que hacer más cambios en el código.
+  Se desacopla el código de la dependencia externa, entonces actualizar la dependencia va a afectar de la menor forma posible.
+  Servicio donde encapsulo el toaster y ahí están todas las configuraciones genéricas, con los parámetros bien definidos.
+
+npmjs.com para instalación de dependencias y configuraciones
+
+Angular Toastr -> ngx-toastr.netlify.app
+  npm install ngx-toastr@11.3.3 --save
+  npm install @angular/animations --save
+  La configuración de este en particular requiere agregar imports en el array 'styles' de angular.json.
+  También en el array 'imports' de app.module.ts, para que esté disponible para todos los componentes
+

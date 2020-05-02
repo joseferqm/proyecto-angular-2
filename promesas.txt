@@ -1,0 +1,5 @@
+Para manejar eventos asíncronos.
+Uno indica algo que se quiere mandar a hacer de forma asíncrona.
+  Ese algo devuelve una respuesta satisfactoria o una respuesta de error.
+  Uno se suscribe a la respuesta satisfactoria en el then.
+  Uno se suscribe a la respuesta de error en el catch.

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { UserService } from '../shared/user.service';
+import { UserData } from '../shared/models';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,7 @@ import { UserService } from '../shared/user.service';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn = false;
-  username: string;
-  fullName: string;
+  userData: UserData;
 
   constructor(private userService: UserService) {}
 
@@ -18,8 +18,7 @@ export class HeaderComponent implements OnInit {
       console.log('userData', userData);
       if (userData) { // Si es distinto de null, el usuario está logueado
         this.isLoggedIn = true;
-        this.username = userData.username;
-        this.fullName = userData.fullName;
+        this.userData = userData;
       } else {
         this.isLoggedIn = false;
       }

@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
     // paso de logout a logged in o inverso
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.userService.performLogin();
+        this.userService.performLogin(user.uid);
       } else {
         this.userService.performLogout();
       }

@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       .signInWithEmailAndPassword(email, password)
       .then((userData) => {
         console.log('userData', userData);
-        this.userService.performLogin();
+        this.userService.performLogin(userData.user.uid);
         this.router.navigate(['/home']);
       })
       .catch((error) => {

@@ -22,5 +22,7 @@ export class AppComponent implements OnInit {
       appId: '1:411773194587:web:395644b1fa8bfee1fa4a7e',
       measurementId: 'G-9KXNRWEET2'
     };
+
+    firebase.initializeApp(firebaseConfig);
   }
 }

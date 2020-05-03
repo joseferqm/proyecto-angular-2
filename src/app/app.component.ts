@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   // Para inicializar Firebase una única vez
   // Funciona como un singleton para toda la aplicación
   ngOnInit(): void {
+    // Configuracion de Firebase (se toma de la consola Web => Project Settings)
     const firebaseConfig = {
       apiKey: 'AIzaSyBuI9n-Od-K6sQZZCq9ekRLyljdsp8YIJ0',
       authDomain: 'proyecto-2-angular-ci2400.firebaseapp.com',
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
       measurementId: 'G-9KXNRWEET2'
     };
 
+    // Inicializción del cliente de Firebase
     firebase.initializeApp(firebaseConfig);
   }
 }

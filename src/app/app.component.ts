@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
       measurementId: 'G-9KXNRWEET2'
     };
 
-    // Inicializción del cliente de Firebase
+    // Inicialización del cliente de Firebase
     firebase.initializeApp(firebaseConfig);
 
     // Revise en firebase si el usuario cambio su estado de autenticacion

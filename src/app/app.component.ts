@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import * as firebase from 'firebase';
+import {UserService} from './shared/user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import * as firebase from 'firebase';
 })
 export class AppComponent implements OnInit {
   title = 'el ejemplo de clase';
+
+  constructor(private userService: UserService) {}
 
   // Para inicializar Firebase una única vez
   // Funciona como un singleton para toda la aplicación
@@ -26,5 +29,15 @@ export class AppComponent implements OnInit {
 
     // Inicializción del cliente de Firebase
     firebase.initializeApp(firebaseConfig);
+
+    // Revise en firebase si el usuario cambio su estado de autenticacion
+    // paso de logout a logged in o inverso
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.userService.performLogin();
+      } else {
+        this.userService.performLogout();
+      }
+    });
   }
 }

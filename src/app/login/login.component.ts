@@ -3,6 +3,8 @@ import {NgForm} from '@angular/forms';
 import {UserService} from '../shared/user.service';
 import {Router} from '@angular/router';
 import {NotificationService} from '../shared/notification.service';
+import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,6 +26,7 @@ export class LoginComponent implements OnInit {
     // console.log('email', email);
     // console.log('password', password);
 
+    /*
     if (email === 'test@test.com' && password === 'test123') {
       console.log(':) usuario correcto!');
 
@@ -41,9 +44,21 @@ export class LoginComponent implements OnInit {
       this.notificationService.showErrorMessage('Error!', 'Error al loguear');
 
       // Notificar con banner casero
-      /*
-      this.notificationService.displayBanner('error', 'Error al loguear');
-      */
+      // this.notificationService.displayBanner('error', 'Error al loguear');
     }
+    */
+
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((userData) => {
+        console.log('userData', userData);
+        this.userService.performLogin();
+        this.router.navigate(['/home']);
+      })
+      .catch((error) => {
+        console.log('error', error);
+        this.notificationService.showErrorMessage('Error!', error.message);
+      });
   }
 }

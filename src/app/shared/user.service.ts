@@ -1,11 +1,12 @@
 import {Injectable, EventEmitter} from '@angular/core';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private isLoggedIn = false;
-  public statusChange: any =  new EventEmitter<any>();
+  public statusChange: any = new EventEmitter<any>();
 
   constructor() {}
 
@@ -25,7 +26,12 @@ export class UserService {
   }
 
   performLogout() {
-    this.isLoggedIn = false;
-    this.statusChange.emit(null);
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        this.isLoggedIn = false;
+        this.statusChange.emit(null);
+      });
   }
 }

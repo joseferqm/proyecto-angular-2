@@ -27,7 +27,7 @@ export class AuthorComponent implements OnInit {
 
       this.authorName = params.get('authorName');
 
-      this.posts = this.postService.getPostsByAuthor(this.authorName);
+      // this.posts = this.postService.getPostsByAuthor(this.authorName);
     });
   }
 

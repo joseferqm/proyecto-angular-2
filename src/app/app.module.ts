@@ -16,11 +16,21 @@ import {NotificationService} from './shared/notification.service';
 import {HeaderComponent} from './header/header.component';
 import {PostService} from './shared/post.service';
 import {SpinnerService} from './shared/spinner.service';
-import { AuthorComponent } from './author/author.component';
-import { NotificationComponent } from './notification/notification.component';
+import {AuthorComponent} from './author/author.component';
+import {NotificationComponent} from './notification/notification.component';
+import {LocationComponent} from './location/location.component';
+import {GeoService} from './shared/geo.service';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, HeaderComponent, AuthorComponent, NotificationComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HomeComponent,
+    HeaderComponent,
+    AuthorComponent,
+    NotificationComponent,
+    LocationComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,7 +39,14 @@ import { NotificationComponent } from './notification/notification.component';
     ToastrModule.forRoot(), // ToastrModule added
     NgxSpinnerModule
   ],
-  providers: [UserService, RouteGuard, NotificationService, PostService, SpinnerService],
+  providers: [
+    UserService,
+    RouteGuard,
+    NotificationService,
+    PostService,
+    SpinnerService,
+    GeoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

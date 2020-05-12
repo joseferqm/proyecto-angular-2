@@ -1,1 +1,9 @@
-<p>location works!</p>
+<div class="row">
+  <div class="col-4">
+    <form class="location" (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <button type="submit" class="btn btn-primary btn-block pretty-button" [disabled]="!f.valid">
+        Location
+      </button>
+    </form>
+  </div>
+</div>

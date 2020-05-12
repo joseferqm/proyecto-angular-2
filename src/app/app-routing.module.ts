@@ -9,9 +9,9 @@ import {LocationComponent} from './location/location.component';
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [RouteGuard]},
   {path: 'home', component: HomeComponent, canActivate: [RouteGuard]},
-  {path: 'author/:authorName', component: AuthorComponent},
+  {path: 'author/:authorName', component: AuthorComponent, canActivate: [RouteGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'location', component: LocationComponent}
+  {path: 'location', component: LocationComponent, canActivate: [RouteGuard]}
 ];
 
 @NgModule({

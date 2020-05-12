@@ -1,3 +1,10 @@
+export interface LocationData {
+  key: string;
+  description: string;
+  creationDate: string;
+  created: number;
+}
+
 export interface PostData {
   key: string;
   creationDate: string;

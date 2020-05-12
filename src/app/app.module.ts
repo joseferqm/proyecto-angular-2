@@ -20,6 +20,7 @@ import {AuthorComponent} from './author/author.component';
 import {NotificationComponent} from './notification/notification.component';
 import {LocationComponent} from './location/location.component';
 import {GeoService} from './shared/geo.service';
+import {LocationService} from './shared/location.service';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {GeoService} from './shared/geo.service';
     NotificationService,
     PostService,
     SpinnerService,
+    LocationService,
     GeoService
   ],
   bootstrap: [AppComponent]

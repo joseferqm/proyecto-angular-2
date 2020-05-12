@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GeoService} from '../shared/geo.service';
+import {LocationService} from '../shared/location.service';
 import {NgForm} from '@angular/forms';
 
 @Component({
@@ -8,11 +8,23 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./location.component.css']
 })
 export class LocationComponent implements OnInit {
-  constructor(private geoService: GeoService) {}
+  constructor(private locationService: LocationService) {}
 
   ngOnInit(): void {}
 
   onSubmit(form: NgForm) {
     console.log('test, get location');
+
+    const coords = [-16.130262, 153.605347];
+
+    this.locationService
+      .addNewLocationAsync('una descripción', coords)
+      .then((value) => {
+        console.log(value);
+        console.log('location added!');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }

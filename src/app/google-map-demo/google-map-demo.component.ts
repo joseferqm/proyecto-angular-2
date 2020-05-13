@@ -9,7 +9,7 @@ import {MapInfoWindow, MapMarker} from '@angular/google-maps';
 export class GoogleMapDemoComponent implements OnInit {
   @ViewChild(MapInfoWindow, {static: false}) infoWindow: MapInfoWindow;
 
-  center = {lat: 24, lng: 12};
+  center = {lat: 10, lng: -80};
   markerOptions = {draggable: false};
   markerPositions: google.maps.LatLngLiteral[] = [];
   zoom = 4;

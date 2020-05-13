@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LocationService} from '../shared/location.service';
 import {FormControl, FormGroup, FormBuilder} from '@angular/forms';
 import {SpinnerService} from '../shared/spinner.service';

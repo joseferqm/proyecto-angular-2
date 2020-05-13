@@ -23,7 +23,7 @@
   </div>
 
   <div class="col-12">
-    <form [formGroup]="locationForm" (onSubmit)="onSubmit()">
+    <form [formGroup]="locationForm">
 
       <div class="form-group">
         <div class="row">
@@ -70,7 +70,8 @@
           </div>
 
           <div class="col-sm-2 mb-3 mb-sm-0">
-            <button type="submit" class="btn btn-success btn-icon-split" [disabled]="locationForm.invalid">
+            <button type="submit" class="btn btn-success btn-icon-split" (click)="onSubmit()"
+              [disabled]="locationForm.invalid">
               Guardar
             </button>
           </div>

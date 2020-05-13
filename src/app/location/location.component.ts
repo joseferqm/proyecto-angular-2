@@ -34,6 +34,8 @@ export class LocationComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('CLICK');
+
     const latString = this.locationForm.get('lat').value;
     const longString = this.locationForm.get('lon').value;
     const descr = this.locationForm.get('descr').value;

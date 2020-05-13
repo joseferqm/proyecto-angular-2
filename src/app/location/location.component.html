@@ -1,0 +1,15 @@
+
+<div class="row">
+  <div class="col-12">
+    <google-map></google-map>
+  </div>
+</div>
+<div class="row">
+  <div class="col-4">
+    <form class="location" (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <button type="submit" class="btn btn-primary btn-block pretty-button" [disabled]="!f.valid">
+        Location
+      </button>
+    </form>
+  </div>
+</div>

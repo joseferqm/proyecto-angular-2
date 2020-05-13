@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LocationService} from '../shared/location.service';
 import {NgForm} from '@angular/forms';
+import {SpinnerService} from '../shared/spinner.service';
 
 @Component({
   selector: 'app-location',
@@ -8,23 +9,31 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./location.component.css']
 })
 export class LocationComponent implements OnInit {
-  constructor(private locationService: LocationService) {}
+  constructor(private locationService: LocationService, private spinnerService: SpinnerService) {}
 
   ngOnInit(): void {}
 
   onSubmit(form: NgForm) {
-    console.log('test, get location');
-
+    const descr = form.value.descr;
+    const lon = form.value.lon;
+    const lat = form.value.lat;
     const coords = [-16.130262, 153.605347];
 
+    this.spinnerService.showMainSpinner();
     this.locationService
-      .addNewLocationAsync('una descripción', coords)
+      .addNewLocationAsync(descr, coords)
       .then((value) => {
-        console.log(value);
-        console.log('location added!');
+        console.log('location added!', value);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        this.spinnerService.hideMainSpinner();
       });
+  }
+
+  findLocation(form: NgForm) {
+    console.log('find location');
   }
 }

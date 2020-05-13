@@ -21,6 +21,7 @@ import {NotificationComponent} from './notification/notification.component';
 import {LocationComponent} from './location/location.component';
 import {GeoService} from './shared/geo.service';
 import {LocationService} from './shared/location.service';
+import {GoogleMapsModule} from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {LocationService} from './shared/location.service';
     FormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    GoogleMapsModule
   ],
   providers: [
     UserService,

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12">
-    <google-map></google-map>
+    <google-map (mapMousemove)="move($event)"></google-map>
   </div>
 </div>
 <br>
@@ -11,19 +11,19 @@
       <div class="form-group">
         <div class="row">
           <div class="col-1">
-            Longitud
+            Latitud
           </div>
           <div class="col-2">
-            <input type="text" class="form-control" id="lon" name="lon" placeholder="Longitud" ngModel required />
+            <input type="text" class="form-control" id="lat" name="lat" placeholder="{{this.getDisplay().lat}}" ngModel required />
           </div>
         </div>
 
         <div class="row">
           <div class="col-1">
-            Latitud
+            Longitud
           </div>
           <div class="col-2">
-            <input type="text" class="form-control" id="lat" name="lat" placeholder="Latitud" ngModel required />
+            <input type="text" class="form-control" id="lon" name="lon" placeholder="{{this.getDisplay().lon}}" ngModel required >
           </div>
         </div>
       </div>

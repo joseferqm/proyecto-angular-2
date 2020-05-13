@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {LocationService} from '../shared/location.service';
-import {NgForm} from '@angular/forms';
+import {FormControl, FormGroup, FormBuilder} from '@angular/forms';
 import {SpinnerService} from '../shared/spinner.service';
+import {MapMarker} from '@angular/google-maps';
 
 @Component({
   selector: 'app-location',
@@ -9,15 +10,35 @@ import {SpinnerService} from '../shared/spinner.service';
   styleUrls: ['./location.component.css']
 })
 export class LocationComponent implements OnInit {
-  private display?: google.maps.LatLngLiteral;
+  locationForm: FormGroup;
 
-  constructor(private locationService: LocationService, private spinnerService: SpinnerService) {}
+  private miniDisplay?: google.maps.LatLngLiteral;
 
-  ngOnInit(): void {}
+  center = {lat: 10, lng: -84};
+  zoom = 8;
+  markerOptions = {draggable: true};
+  markerPosition: google.maps.LatLngLiteral;
 
-  onSubmit(form: NgForm) {
-    const descr = form.value.descr;
-    const parsedCoords = this.parseCoords(form.value.lat, form.value.lon);
+  constructor(
+    private fb: FormBuilder,
+    private locationService: LocationService,
+    private spinnerService: SpinnerService
+  ) {}
+
+  ngOnInit(): void {
+    this.locationForm = this.fb.group({
+      lat: new FormControl(''),
+      lon: new FormControl(''),
+      descr: new FormControl('')
+    });
+  }
+
+  onSubmit() {
+    const latString = this.locationForm.get('lat').value;
+    const longString = this.locationForm.get('lon').value;
+    const descr = this.locationForm.get('descr').value;
+
+    const parsedCoords = this.parseCoords(latString, longString);
 
     if (parsedCoords.valid) {
       const coords = [parsedCoords.lat, parsedCoords.lon];
@@ -26,7 +47,7 @@ export class LocationComponent implements OnInit {
         .addNewLocationAsync(descr, coords)
         .then((value) => {
           console.log('location added!', value);
-          form.reset();
+          this.locationForm.reset();
         })
         .catch((error) => {
           console.log(error);
@@ -47,25 +68,44 @@ export class LocationComponent implements OnInit {
     return result;
   }
 
-  findLocation(form: NgForm) {
-    console.log('find location');
+  findLocation() {
+    const latString = this.locationForm.get('lat').value;
+    const longString = this.locationForm.get('lon').value;
 
-    const parsedCoords = this.parseCoords(form.value.lat, form.value.lon);
+    const parsedCoords = this.parseCoords(latString, longString);
 
     if (parsedCoords.valid) {
       const coords = [parsedCoords.lat, parsedCoords.lon];
       console.log('latitude', coords[0]);
       console.log('longitude', coords[1]);
+      this.updateMarker();
     }
   }
 
-  move(event: google.maps.MouseEvent) {
-    this.display = event.latLng.toJSON();
+  moveOverMap(event: google.maps.MouseEvent) {
+    this.miniDisplay = event.latLng.toJSON();
   }
 
-  getDisplay() {
-    return this.display
-      ? {lat: this.display.lat.toFixed(4), lon: this.display.lng.toFixed(4)}
+  getMiniDisplay() {
+    return this.miniDisplay
+      ? {lat: this.miniDisplay.lat.toFixed(4), lon: this.miniDisplay.lng.toFixed(4)}
       : {lat: 0.0, lon: 0.0};
   }
+
+  clickOverMap(event: google.maps.MouseEvent) {
+    this.markerPosition = event.latLng.toJSON();
+    this.updateFormCoordinates();
+  }
+
+  markerDragged(marker: MapMarker) {
+    this.markerPosition = marker.getPosition().toJSON();
+    this.updateFormCoordinates();
+  }
+
+  updateFormCoordinates() {
+    this.locationForm.get('lat').setValue(this.markerPosition.lat.toFixed(4));
+    this.locationForm.get('lon').setValue(this.markerPosition.lng.toFixed(4));
+  }
+
+  updateMarker() {}
 }

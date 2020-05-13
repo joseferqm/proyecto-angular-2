@@ -1,29 +1,49 @@
 <div class="row">
   <div class="col-12">
-    <google-map (mapMousemove)="move($event)"></google-map>
+    <google-map [center]="center" [zoom]="zoom" (mapMousemove)="this.moveOverMap($event)"
+      (mapClick)="this.clickOverMap($event)">
+      <map-marker #marker [position]="this.markerPosition" [options]="this.markerOptions"
+        (mapDragend)=this.markerDragged(marker)></map-marker>
+    </google-map>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-2">
+    <p>Latitud: {{this.getMiniDisplay().lat}}</p>
+  </div>
+  <div class="col-2">
+    <p>Longitud: {{this.getMiniDisplay().lon}}</p>
   </div>
 </div>
 <br>
 <div class="row">
   <div class="col-12">
-    <form class="location" (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <h1>Localización</h1>
+  </div>
+
+  <div class="col-12">
+    <form [formGroup]="locationForm" (onSubmit)="onSubmit()">
 
       <div class="form-group">
         <div class="row">
           <div class="col-1">
-            Latitud
+            <label for="lat">Latitud</label>
           </div>
+
           <div class="col-2">
-            <input type="text" class="form-control" id="lat" name="lat" placeholder="{{this.getDisplay().lat}}" ngModel required />
+            <input type="text" id="lat" name="lat" placeholder="Latitud" formControlName="lat" required>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-1">
-            Longitud
-          </div>
-          <div class="col-2">
-            <input type="text" class="form-control" id="lon" name="lon" placeholder="{{this.getDisplay().lon}}" ngModel required >
+        <div class="form-group">
+          <div class="row">
+            <div class="col-1">
+              <label for="lon">Longitud</label>
+            </div>
+            <div class="col-2">
+              <input type="text" id="lon" name="lon" placeholder="Longitud" formControlName="lon" required>
+            </div>
           </div>
         </div>
       </div>
@@ -31,10 +51,11 @@
       <div class="form-group">
         <div class="row">
           <div class="col-1">
-            Descripción
+            <label for="descr">Descripción</label>
           </div>
           <div class="col-10">
-            <textarea id="descr" name="descr" required placeholder="Descripción" ngModel required></textarea>
+            <textarea id="descr" name="descr" required placeholder="Descripción" formControlName="descr"
+              required></textarea>
           </div>
         </div>
       </div>
@@ -42,15 +63,15 @@
       <div class="form-group">
         <div class="row">
           <div class="col-sm-2 mb-3 mb-sm-0">
-            <button type="button" class="btn btn-success btn-icon-split" (click)="findLocation(f)"
-              [disabled]="!f.valid">
-              Go to location
+            <button type="button" class="btn btn-success btn-icon-split" (click)="findLocation()"
+              [disabled]="locationForm.invalid">
+              Ir
             </button>
           </div>
 
           <div class="col-sm-2 mb-3 mb-sm-0">
-            <button type="submit" class="btn btn-success btn-icon-split" [disabled]="!f.valid">
-              Post location
+            <button type="submit" class="btn btn-success btn-icon-split" [disabled]="locationForm.invalid">
+              Guardar
             </button>
           </div>
         </div>

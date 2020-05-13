@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './login/login.component';
 import {HomeComponent} from './home/home.component';
 import {UserService} from './shared/user.service';
@@ -42,7 +42,8 @@ import {GoogleMapDemoComponent} from './google-map-demo/google-map-demo.componen
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     NgxSpinnerModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    ReactiveFormsModule
   ],
   providers: [
     UserService,

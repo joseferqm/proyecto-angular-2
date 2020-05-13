@@ -15,13 +15,12 @@
         <tr *ngFor="let post of this.getPosts()">
           <td>{{ post.key }}</td>
           <td>{{ post.creationDate | date: 'medium' }}</td>
-          <!-- <td>{{ post.author }}</td> -->
           <td>
             <a routerLink="/author/{{ post.author }}">{{ post.author }}</a>
           </td>
           <td>{{ post.title }}</td>
           <td>{{ post.content }}</td>
-          <td><img [src]="post.img" style="width:100px;" /></td>
+          <td><img [src]="post.img" style="width:100px;" alt="imagen"/></td>
         </tr>
       </tbody>
     </table>

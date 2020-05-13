@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {PostData} from './models';
 import * as firebase from 'firebase';
 
 @Injectable({

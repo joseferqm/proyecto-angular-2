@@ -22,6 +22,7 @@ import {LocationComponent} from './location/location.component';
 import {GeoService} from './shared/geo.service';
 import {LocationService} from './shared/location.service';
 import {GoogleMapsModule} from '@angular/google-maps';
+import {GoogleMapDemoComponent} from './google-map-demo/google-map-demo.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {GoogleMapsModule} from '@angular/google-maps';
     HeaderComponent,
     AuthorComponent,
     NotificationComponent,
-    LocationComponent
+    LocationComponent,
+    GoogleMapDemoComponent
   ],
   imports: [
     BrowserModule,

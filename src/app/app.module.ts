@@ -23,6 +23,7 @@ import {GeoService} from './shared/geo.service';
 import {LocationService} from './shared/location.service';
 import {GoogleMapsModule} from '@angular/google-maps';
 import {GoogleMapDemoComponent} from './google-map-demo/google-map-demo.component';
+import { FirebaseService } from './shared/firebase.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {GoogleMapDemoComponent} from './google-map-demo/google-map-demo.componen
     PostService,
     SpinnerService,
     LocationService,
-    GeoService
+    GeoService,
+    FirebaseService
   ],
   bootstrap: [AppComponent]
 })

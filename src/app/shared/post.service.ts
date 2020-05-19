@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import * as firebase from 'firebase';
+import {FirebaseService} from './firebase.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  constructor() {}
+  constructor(private firebaseService: FirebaseService) {}
 
   getAllPosts() {
     /*
@@ -50,8 +50,6 @@ export class PostService {
     return prom;
     */
 
-    const firebaseUserId = firebase.auth().currentUser.uid;
-    const newPostKey = firebase.database().ref().child(`posts/${firebaseUserId}`).push().key;
     const newPostEntry = {
       title: title,
       content: content,
@@ -61,11 +59,7 @@ export class PostService {
       img: 'https://placeimg.com/320/240/any/sepia'
     };
 
-    // Objeto con todos los cambios por aplicar en la base de datos de Firebase
-    // esto permite mandar varios cambios a la vez
-    const updates = {};
-    updates[`posts/${firebaseUserId}/${newPostKey}`] = newPostEntry;
-    return firebase.database().ref().update(updates);
+    return this.firebaseService.addNewEntityAsync(newPostEntry, 'posts', true);
   }
 
   getPostsByAuthor(author: string) {
